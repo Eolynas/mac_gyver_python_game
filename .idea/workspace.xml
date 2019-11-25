@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="687f1bb4-72d4-48bc-b9d5-9331236c57c9" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
+=======
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MacGyver.py" beforeDir="false" afterPath="$PROJECT_DIR$/MacGyver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ObjectsPickUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectsPickUp.py" afterDir="false" />
