@@ -6,10 +6,21 @@ import ObjectsPickUp
 level_1 = lvl.Level("config/level_1.txt")
 
 #Initit object
-object_1 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "tube")
-name_object_1, position_x_object_1, position_y_object_1 = object_1.generate_object()
-level_1.structure[position_x_object_1][position_y_object_1] = name_object_1
-print(level_1.structure)
+# list_objects = ["aiguille", "tube", "ether"]
+
+object_1 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "aiguille")
+object_1.generate_object()
+level_1.place_object(object_1)
+
+object_2 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "tube")
+object_2.generate_object()
+level_1.place_object(object_2)
+
+object_3 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "ether")
+object_3.generate_object()
+level_1.place_object(object_3)
+# level_1.structure[position_x_object_1][position_y_object_1] = name_object_1
+# print(level_1.structure)
 #initit mac gyver
 mac_gyver = MacGyver.MacGyver(level_1.structure)
 

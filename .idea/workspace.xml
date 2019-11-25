@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="687f1bb4-72d4-48bc-b9d5-9331236c57c9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project_3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/project_3.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MacGyver.py" beforeDir="false" afterPath="$PROJECT_DIR$/MacGyver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectsPickUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectsPickUp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game_mac_gyver.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_mac_gyver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level.py" beforeDir="false" afterPath="$PROJECT_DIR$/level.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,13 +94,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/game_mac_gyver.py</url>
-          <line>13</line>
+          <line>24</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ObjectsPickUp.py</url>
-          <line>34</line>
-          <option name="timeStamp" value="17" />
+          <url>file://$PROJECT_DIR$/level.py</url>
+          <line>42</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

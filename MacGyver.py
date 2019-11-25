@@ -35,11 +35,11 @@ class MacGyver:
                 print("deplacement à droite")
                 # print(self.structure)
                 MacGyver.display_structure(self)
-            if condition == "T":
+            if condition == "T" or condition == "A" or condition == "E":
                 self.structure[self.case_x][self.case_y] = "0"
                 self.case_y = self.case_y + 1
                 self.structure[self.case_x][self.case_y] = "MG"
-                print("Mac_Gyver viens de ramasser un TUBE")
+                print("Mac_Gyver viens de ramasser un object")
                 self.objects.append("Tube")
                 MacGyver.display_structure(self)
             elif condition == "m":
@@ -124,3 +124,5 @@ class MacGyver:
             return False
 
         pass
+
+
