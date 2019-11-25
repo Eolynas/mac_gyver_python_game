@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import random
+import level
 
 class ObjectsPickUp:
     """
@@ -19,6 +20,7 @@ class ObjectsPickUp:
         self.name = name
         # Structure
         self.structure = structure
+        self.name_object = ""
 
 
     def generate_object(self):
@@ -27,18 +29,18 @@ class ObjectsPickUp:
         :return:
         """
         while True:
-            self.case_x = random.randint(0, 2)
-            self.case_y = random.randint(0, 2)
+            self.case_x = random.randint(0, 6)
+            self.case_y = random.randint(0, 6)
             if self.structure[self.case_x][self.case_y] == "0":
                 print("Création de l'objet", self.name, " à l'emplacement x:", self.case_x, " y:", self.case_y)
-                name_object = self.name[0].upper()
-                return name_object, self.case_x, self.case_y
+                self.name_object = self.name[0].upper()
+                return self.name_object, self.case_x, self.case_y
 
 
 
 
 
 
-        pass
+
 
 

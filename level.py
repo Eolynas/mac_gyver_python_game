@@ -14,7 +14,7 @@ class Level:
         :type file: .txt
         """
         self.file = file
-        self.structure = 0
+        self.structure = []
         self.create_level()
 
     def create_level(self):
@@ -36,7 +36,11 @@ class Level:
             self.structure = level_structure
             # print(self.structure)
 
-
+    def place_object(self, items):
+        case_x = items.case_x
+        case_y = items.case_y
+        name_object = items.name_object
+        self.structure[case_x][case_y] = name_object
 
     #TODO: Recup valeur laby
     #TODO: Modifier la grille
