@@ -35,6 +35,7 @@ class MacGyver:
                 print("deplacement à droite")
                 # print(self.structure)
                 MacGyver.display_structure(self)
+                return True
             if condition == "T" or condition == "A" or condition == "E":
                 self.structure[self.case_x][self.case_y] = "0"
                 self.case_y = self.case_y + 1
