@@ -22,7 +22,6 @@ windows.blit(background, (0, 0))
 # Title
 pygame.display.set_caption(constances.title_game)
 
-
 # TODO: Test wall
 level_1.display(windows)
 
@@ -30,8 +29,6 @@ level_1.display(windows)
 mg_icon = pygame.image.load(constances.mg_icon).convert_alpha()
 position_mg = mg_icon.get_rect()
 windows.blit(mg_icon, position_mg)
-
-
 
 # Rafraichissement de la fenetre
 pygame.display.flip()
@@ -41,23 +38,22 @@ pygame.display.flip()
 
 # Initit object
 # list_objects = ["aiguille", "tube", "ether"]
-object_1 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "aiguille")
-object_1.generate_object()
-level_1.place_object(object_1)
-
-object_2 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "tube")
-object_2.generate_object()
-level_1.place_object(object_2)
-
-object_3 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "ether")
-object_3.generate_object()
-level_1.place_object(object_3)
+# object_1 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "aiguille")
+# object_1.generate_object()
+# level_1.place_object(object_1)
+#
+# object_2 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "tube")
+# object_2.generate_object()
+# level_1.place_object(object_2)
+#
+# object_3 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "ether")
+# object_3.generate_object()
+# level_1.place_object(object_3)
 # level_1.structure[position_x_object_1][position_y_object_1] = name_object_1
 # print(level_1.structure)
+
 # initit mac gyver
 mac_gyver = MacGyver.MacGyver(level_1.structure)
-
-
 
 # Boucle infinie
 continuer = 1
@@ -66,35 +62,38 @@ while continuer:
     """
     Gestion de la boucle / event avec pygame
     """
+    # Limitation de vitesse de la boucle
+    pygame.time.Clock().tick(30)
+
+
+
     # On parcours tous les events
     for event in pygame.event.get():  # On parcours la liste de tous les événements reçus
         # Fermeture du jeux si on appui sur la croix ou E
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_e):  # Si un de ces événements est de type QUIT
             continuer = 0  # On arrête la boucle
 
-        # Deplacement vers la droite
-        if event.type == KEYDOWN and event.key == K_RIGHT:
-            print("Droite")
-            position_mg = position_mg.move(30, 0)
 
+        elif event.type == KEYDOWN:
 
-        # Deplacement vers la gauche
-        if event.type == KEYDOWN and event.key == K_LEFT:
-            print("Gauche")
-            position_mg = position_mg.move(-30, 0)
+            # Deplacement vers la droite
+            if event.key == K_RIGHT:
+                mac_gyver.move("right")
 
-        # Deplacement vers le haut
-        if event.type == KEYDOWN and event.key == K_UP:
-            print("Haut")
-            position_mg = position_mg.move(0, -30)
+            # Deplacement vers la gauche
+            if event.key == K_LEFT:
+                mac_gyver.move("left")
 
-        # Deplacement vers le bas
-        if event.type == KEYDOWN and event.key == K_DOWN:
-            print("Bas")
-            position_mg = position_mg.move(0, 30)
+            # Deplacement vers le haut
+            if event.key == K_UP:
+                mac_gyver.move("up")
+
+            # Deplacement vers le bas
+            if event.key == K_DOWN:
+                mac_gyver.move("down")
     # Re-collage
     windows.blit(background, (0, 0))
-    windows.blit(mg_icon, position_mg)
+    windows.blit(mg_icon, (mac_gyver.x, mac_gyver.y))
     level_1.display(windows)
     # Rafraichissement
     pygame.display.flip()

@@ -1,9 +1,9 @@
 """Config & image for the game Mac Gyver"""
 
 #Paramètres de la fenêtre
-nombre_sprite_cote = 15
+number_sprite = 15
 size_sprite = 30
-cote_fenetre = nombre_sprite_cote * size_sprite
+cote_fenetre = number_sprite * size_sprite
 
 #Personnalisation de la fenêtre
 title_game = "Mac Gyver Game "
