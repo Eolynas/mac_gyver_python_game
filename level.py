@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 import pygame
-from pygame.locals import *
+
 import constances
 
 
 class Level:
-
     """
     level creation
     """
@@ -56,11 +55,23 @@ class Level:
                 num_case += 1
             num_line += 1
 
-    def place_object(self, items):
-        case_x = items.case_x
-        case_y = items.case_y
-        name_object = items.name_object
-        self.structure[case_x][case_y] = name_object
+    def display_structure(self):
+        for line in self.structure:
+            print(line)
+            # pass
 
-    #TODO: Recup valeur laby
-    #TODO: Modifier la grille
+    def place_caractere(self, name, case_y, case_x):
+        self.structure[case_y][case_x] = name
+        Level.display_structure(self)
+
+    def place_item(self, name_item, case_y, case_x):
+        # case_x = items.case_x
+        # case_y = items.case_y
+        # name_object = items.name_object
+        print("y: ", case_y)
+        print("x: ", case_x)
+        self.structure[case_x][case_y] = name_item
+        Level.display_structure(self)
+
+    # TODO: Recup valeur laby
+    # TODO: Modifier la grille

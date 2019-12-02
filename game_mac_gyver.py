@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
+
 import pygame
 from pygame.locals import *
 
 import MacGyver
-import ObjectsPickUp
-import constances
+import display
 import level as lvl
+import items
 
 # Initialisation lvl
 level_1 = lvl.Level("config/level_1.txt")
@@ -13,49 +15,50 @@ level_1 = lvl.Level("config/level_1.txt")
 """
 Initialisation de pygame
 """
-# Init pygame
-pygame.init()
-# Display windows
-windows = pygame.display.set_mode((constances.cote_fenetre, constances.cote_fenetre))
-background = pygame.image.load(constances.background_game).convert()
-windows.blit(background, (0, 0))
-# Title
-pygame.display.set_caption(constances.title_game)
+# ####### FENETRE ####### #
+display.display(level_1)
+# ##################### #
 
-# TODO: Test wall
-level_1.display(windows)
+# ####### MAC GYVER ####### #
 
 # Mac Gyver icon
-mg_icon = pygame.image.load(constances.mg_icon).convert_alpha()
-position_mg = mg_icon.get_rect()
-windows.blit(mg_icon, position_mg)
+# init mac gyver en ligne de commande
+mac_gyver = MacGyver.MacGyver(level_1.structure)
+mac_gyver.display_mac_gyver()
 
+# ###################### #
+
+# # ####### ITEMS ####### #
+# # Initialisation de l'items
+items_1 = items.Items(level_1.structure, "aiguille")
+items_1.generate_object()
+items_1.display_aiguille()
+
+items_2 = items.Items(level_1.structure, "ether")
+items_2.generate_object()
+items_2.display_ether()
+
+items_3 = items.Items(level_1.structure, "tube")
+items_3.generate_object()
+items_3.display_ether()
+
+# items_aiguille = items.Items(level_1.structure, "aiguille")
+# # Génération de l'item 1
+# items_aiguille.generate_object()
+# # #### PYGAME #### #
+# # items_1_icon = pygame.image.load(constances.img_aiguille).convert_alpha()
+# # position_items_1 = (2, 0)
+# # window.blit(items_1_icon, position_items_1)
+
+# ##################### #
+# TODO: Test display all
+# display.test_display_all()
+# display.display(level_1)
 # Rafraichissement de la fenetre
 pygame.display.flip()
 
 # ########################################### #
 
-
-# Initit object
-# list_objects = ["aiguille", "tube", "ether"]
-# object_1 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "aiguille")
-# object_1.generate_object()
-# level_1.place_object(object_1)
-#
-# object_2 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "tube")
-# object_2.generate_object()
-# level_1.place_object(object_2)
-#
-# object_3 = ObjectsPickUp.ObjectsPickUp(level_1.structure, "ether")
-# object_3.generate_object()
-# level_1.place_object(object_3)
-# level_1.structure[position_x_object_1][position_y_object_1] = name_object_1
-# print(level_1.structure)
-
-# initit mac gyver
-mac_gyver = MacGyver.MacGyver(level_1.structure)
-
-# Boucle infinie
 continuer = 1
 while continuer:
     # ########################################### #
@@ -65,17 +68,14 @@ while continuer:
     # Limitation de vitesse de la boucle
     pygame.time.Clock().tick(30)
 
-
-
     # On parcours tous les events
     for event in pygame.event.get():  # On parcours la liste de tous les événements reçus
         # Fermeture du jeux si on appui sur la croix ou E
-        if event.type == QUIT or (event.type == KEYDOWN and event.key == K_e):  # Si un de ces événements est de type QUIT
+        if event.type == QUIT or (
+                event.type == KEYDOWN and event.key == K_e):  # Si un de ces événements est de type QUIT
             continuer = 0  # On arrête la boucle
 
-
         elif event.type == KEYDOWN:
-
             # Deplacement vers la droite
             if event.key == K_RIGHT:
                 mac_gyver.move("right")
@@ -92,47 +92,13 @@ while continuer:
             if event.key == K_DOWN:
                 mac_gyver.move("down")
     # Re-collage
-    windows.blit(background, (0, 0))
-    windows.blit(mg_icon, (mac_gyver.x, mac_gyver.y))
-    level_1.display(windows)
+    display.display(level_1)
+    mac_gyver.display_mac_gyver()
+
+    items_1.display_aiguille()
+    items_2.display_ether()
+    items_3.display_tube()
+
+
     # Rafraichissement
     pygame.display.flip()
-
-    # ########################################### #
-
-
-
-
-    # cmd = input('Utiliser ZQSD pour déplacer Mac_Gyver')
-    #
-    # if cmd == "z":
-    #     # On fait monter MG
-    #     mac_gyver.move("up")
-    #     if mac_gyver.move("up"):
-    #         print("GAGNE")
-    #         break
-    #
-    # if cmd == "q":
-    #     # On fait aller à droite MG
-    #     mac_gyver.move("left")
-    #
-    # if cmd == "d":
-    #     # On fait aller à gauche MG
-    #     mac_gyver.move("right")
-    #
-    # if cmd == "s":
-    #     # On fait descendre MG
-    #     mac_gyver.move("down")
-    #
-    # if cmd == "o":
-    #     mac_gyver.move("objects")
-    # if cmd == "e":
-    #     print("PARTIE TERMINEE")
-    #     break
-
-# #initit mac gyver
-# mac_gyver = MacGyver.MacGyver(level_1.structure)
-# mac_gyver.move("right")
-# mac_gyver.move("right")
-# mac_gyver.move("down")
-# mac_gyver.move("right")
