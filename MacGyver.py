@@ -4,6 +4,7 @@ from pygame.locals import *
 import constances
 import level
 import display
+import items
 
 
 class MacGyver:
@@ -11,8 +12,8 @@ class MacGyver:
     Mac Gyver move
     """
 
-    def __init__(self, structure):
-        self.structure = structure
+    def __init__(self, my_level: level.Level):
+        self.structure = my_level.structure
         # Line horizontal
         self.case_x = 0
         # Line vertical
@@ -30,9 +31,10 @@ class MacGyver:
     #         print(line)
     #         # pass
 
-    def display_mac_gyver(self):
+    def display_mac_gyver(self, my_dysplay: display.Display):
         # level.Level.place_caractere(self, self.name, self.case_y, self.case_x)
-        display.display_caractere(self.y, self.x)
+        my_dysplay.display_caractere(self.y, self.x)
+        # display.display_caractere(self.y, self.x)
 
     def move(self, move):
         # On recois la direction du move
@@ -50,6 +52,8 @@ class MacGyver:
                     # print(self.structure)
                     self.x = self.case_x * constances.size_sprite
                     # TODO: Affichage de MG en LDC (pourquoi mettre le SELF ??????)
+                    # items.Items.generate_object(self)
+
 
                     # TODO: On fait appel à display pour gerer l'affichage de pygame
 

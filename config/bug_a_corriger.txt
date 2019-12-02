@@ -1,0 +1,8 @@
+- Faire en sorte que le perso ne se deplace pas si il es en bout de map
+- Icone de mur qui disparait sur certain move (quand on va vite ?)
+    - Visiblement c'est la structure meme qui change le M en 0
+
+Bug quand on depasse la carte vers le bas
+
+
+- Faire une classe pour display

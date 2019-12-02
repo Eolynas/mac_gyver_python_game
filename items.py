@@ -56,14 +56,14 @@ class Items:
                 # display.display_items(self.x, self.y)
                 return self.name_object, self.image, self.case_y, self.case_x
 
-    def display_aiguille(self):
-        display.display_aiguille(self.y, self.x)
+    def display_aiguille(self, my_dysplay: display.Display):
+        my_dysplay.display_aiguille(self.y, self.x)
 
-    def display_ether(self):
-        display.display_ether(self.y, self.x)
+    def display_ether(self, my_dysplay: display.Display):
+        my_dysplay.display_ether(self.y, self.x)
 
-    def display_tube(self):
-        display.display_tube(self.y, self.x)
+    def display_tube(self, my_dysplay: display.Display):
+        my_dysplay.display_tube(self.y, self.x)
 
 
 
