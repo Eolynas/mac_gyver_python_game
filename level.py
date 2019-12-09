@@ -80,7 +80,6 @@ class Level:
         self.structure[case_x][case_y] = name_item
         Level.display_structure(self)
 
-
     def update_structure(self, x, y):
         return self.structure[y][x]
 

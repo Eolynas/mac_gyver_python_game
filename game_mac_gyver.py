@@ -41,7 +41,7 @@ def main():
 
     # ####### FENETRE ####### #
     display_windows = display.Display()
-    display_windows.display(level_1)
+    display_windows.display(level_1, mac_gyver.objects)
     # ##################### #
 
     # ##################### #
@@ -62,59 +62,104 @@ def main():
         # Limitation de vitesse de la boucle
         pygame.time.Clock().tick(30)
 
-        display_windows.display_object_pu()
-
         # On parcours tous les events
-        for event in pygame.event.get():  # On parcours la liste de tous les événements reçus
-            # Fermeture du jeux si on appui sur la croix ou E
-            if event.type == QUIT or (
-                    event.type == KEYDOWN and event.key == K_e):  # Si un de ces événements est de type QUIT
-                return False # On arrête la boucle
+        # for event in pygame.event.get():  # On parcours la liste de tous les événements reçus
+        #
+        #     # Fermeture du jeux si on appui sur la croix ou E
+        #     if event.type == QUIT or (
+        #             event.type == KEYDOWN and event.key == K_e):  # Si un de ces événements est de type QUIT
+        #         # display_windows.end_game()
+        #         break # On arrête la boucle
+        #
+        #     elif event.type == KEYDOWN:
+        #         # Deplacement vers la droite
+        #         if event.key == K_RIGHT:
+        #             answer = mac_gyver.move("right")
+        #             # level_1.display_structure()
+        #             # print(answer)
+        #             if not answer:
+        #                 break
+        #
+        #         # Deplacement vers la gauche
+        #         elif event.key == K_LEFT:
+        #             answer = mac_gyver.move("left")
+        #             # level_1.display_structure()
+        #             # print(answer)
+        #             if not answer:
+        #                 break
+        #
+        #         # Deplacement vers le haut
+        #         elif event.key == K_UP:
+        #             answer = mac_gyver.move("up")
+        #             # level_1.display_structure()
+        #             # print(answer)
+        #             if not answer:
+        #                 return False
+        #
+        #         # Deplacement vers le bas
+        #         elif event.key == K_DOWN:
+        #             answer = mac_gyver.move("down")
+        #             # level_1.display_structure()
+        #             # print("DOWN")
+        #             # print(answer)
+        #             if not answer:
+        #                 return False
+        #
+        #         elif event.key == K_o:
+        #             mac_gyver.move("objects")
 
-            elif event.type == KEYDOWN:
-                # Deplacement vers la droite
-                if event.key == K_RIGHT:
-                    answer = mac_gyver.move("right")
-                    # level_1.display_structure()
-                    # print(answer)
-                    if not answer:
-                        return False
+        event = pygame.event.wait()
 
+        # Fermeture du jeux si on appui sur la croix ou E
+        if event.type == QUIT or (
+                event.type == KEYDOWN and event.key == K_e):  # Si un de ces événements est de type QUIT
+            # display_windows.end_game()
+            break # On arrête la boucle
 
-                # Deplacement vers la gauche
-                elif event.key == K_LEFT:
-                    answer = mac_gyver.move("left")
-                    # level_1.display_structure()
-                    # print(answer)
-                    if not answer:
-                        return False
+        elif event.type == KEYDOWN:
+            # Deplacement vers la droite
+            if event.key == K_RIGHT:
+                answer = mac_gyver.move("right")
+                # level_1.display_structure()
+                # print(answer)
+                if not answer:
+                    break
+            # Deplacement vers la gauche
+            elif event.key == K_LEFT:
+                answer = mac_gyver.move("left")
+                # level_1.display_structure()
+                # print(answer)
+                if not answer:
+                    break
 
-                # Deplacement vers le haut
-                elif event.key == K_UP:
-                    answer = mac_gyver.move("up")
-                    # level_1.display_structure()
-                    # print(answer)
-                    if not answer:
-                        return False
+            # Deplacement vers le haut
+            elif event.key == K_UP:
+                answer = mac_gyver.move("up")
+                # level_1.display_structure()
+                # print(answer)
+                if not answer:
+                    break
 
-                # Deplacement vers le bas
-                elif event.key == K_DOWN:
-                    answer = mac_gyver.move("down")
-                    # level_1.display_structure()
-                    # print("DOWN")
-                    # print(answer)
-                    if not answer:
-                        return False
+            # Deplacement vers le bas
+            elif event.key == K_DOWN:
+                answer = mac_gyver.move("down")
+                # level_1.display_structure()
+                # print("DOWN")
+                # print(answer)
+                if not answer:
+                    break
 
-                elif event.key == K_o:
-                    mac_gyver.move("objects")
-
+            elif event.key == K_o:
+                mac_gyver.move("objects")
 
         # Re-collage
-        display_windows.display(level_1)
+        display_windows.display(level_1, mac_gyver.objects)
 
         # Rafraichissement
         pygame.display.flip()
+
+
+    display_windows.end_game()
 
 
 if __name__ == '__main__':

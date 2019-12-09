@@ -62,7 +62,7 @@ class MacGyver:
                         print("GAME OVER")
                         return False
                     else:
-                        print("FELICITATION VOUS AVEZ GAGNEZ")
+                        print("FELICITATION VOUS AVEZ GAGNE")
                         return False
             return True
 
