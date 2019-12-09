@@ -19,6 +19,13 @@ class Level:
         self.structure = []
         self.create_level()
 
+    def get_structure(self):
+        return self.structure
+
+    def setter_structure(self, structure):
+        self.structure = structure
+        # self.display_structure()
+
     def create_level(self):
         """
 

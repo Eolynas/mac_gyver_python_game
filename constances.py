@@ -4,6 +4,7 @@
 number_sprite = 15
 size_sprite = 40
 cote_fenetre = number_sprite * size_sprite
+size_info = 100
 
 #Personnalisation de la fenêtre
 title_game = "Mac Gyver Game "
@@ -16,3 +17,4 @@ img_wall = "images/brick.png"
 img_aiguille = "images/aiguille.png"
 img_ether = "images/ether.png"
 img_tube = "images/tube.png"
+img_guardian = "images/guardian.png"

@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 import random
-import level
-import pygame
-from pygame.locals import *
+
 import constances
-import display
 
 
 class Items:
     """
     creating objects to pick up
     """
-    def __init__(self, structure, name):
+
+    def __init__(self, level, name):
         """
 
         """
+        # Instance level object
+        self.instance_level = level
         # Line horizontal
         self.case_x = ""
         # Line vertical
@@ -28,7 +28,7 @@ class Items:
         # Name
         self.name = name
         # Structure
-        self.structure = structure
+        # self.structure = structure
         self.name_object = ""
         # Placement de l'objet sur la structure
         # self.generate_object()
@@ -39,35 +39,38 @@ class Items:
         Function for generate position for the objects at pick up
         :return:
         """
+        # Getter pour recup la structure
+        structure = self.instance_level.get_structure()
         while True:
             self.case_x = random.randint(0, 14)
             self.case_y = random.randint(0, 14)
-            if self.structure[self.case_y][self.case_x] == "0":
+            if structure[self.case_y][self.case_x] == "0":
                 print("Création de l'objet", self.name, " à l'emplacement x:", self.case_x, " y:", self.case_y)
                 self.name_object = self.name[0].upper()
-                # self.structure[self.case_y][self.case_x] = self.name_object
+                structure[self.case_y][self.case_x] = self.name_object
                 # print(self.structure)
                 self.x = self.case_x * constances.size_sprite
                 self.y = self.case_y * constances.size_sprite
                 # TODO: On envoie les coordonnées à la class level qui gere l'affichage en ligne de commande
-                # level.Level.place_item(self, self.name_object, self.case_y, self.case_x)
+                self.instance_level.setter_structure(structure)
 
-                # break
-                # display.display_items(self.x, self.y)
-                return self.name_object, self.image, self.case_y, self.case_x
+                break
 
-    def display_aiguille(self, my_dysplay: display.Display):
-        my_dysplay.display_aiguille(self.y, self.x)
+    @staticmethod
+    def pick_up_object(object_pu: str):
 
-    def display_ether(self, my_dysplay: display.Display):
-        my_dysplay.display_ether(self.y, self.x)
+        if object_pu == "A":
+            return "Aiguille"
+        elif object_pu == "E":
+            return "Ether"
+        elif object_pu == "T":
+            return "Tube"
 
-    def display_tube(self, my_dysplay: display.Display):
-        my_dysplay.display_tube(self.y, self.x)
-
-
-
-
-
-
-
+    # def display_aiguille(self, my_dysplay: display.Display):
+    #     my_dysplay.display_aiguille(self.y, self.x)
+    #
+    # def display_ether(self, my_dysplay: display.Display):
+    #     my_dysplay.display_ether(self.y, self.x)
+    #
+    # def display_tube(self, my_dysplay: display.Display):
+    #     my_dysplay.display_tube(self.y, self.x)

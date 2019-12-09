@@ -13,7 +13,8 @@ class MacGyver:
     """
 
     def __init__(self, my_level: level.Level):
-        self.structure = my_level.structure
+        # self.structure = my_level.structure
+        self.instance_level = my_level
         # Line horizontal
         self.case_x = 0
         # Line vertical
@@ -22,14 +23,6 @@ class MacGyver:
         self.y = 0
         self.name = "MG"
         self.objects = []
-        # init mac gyver at position 0 0
-        # self.mac_gyver = self.structure[0][0] = "MG"
-        # MacGyver.display_structure(self)
-
-    # def display_structure(self):
-    #     for line in self.structure:
-    #         print(line)
-    #         # pass
 
     def display_mac_gyver(self, my_dysplay: display.Display):
         # level.Level.place_caractere(self, self.name, self.case_y, self.case_x)
@@ -39,78 +32,150 @@ class MacGyver:
     def move(self, move):
         # On recois la direction du move
         # On envoie la direction à la function condition_for_move pour savoir si on peux deplacer
-
+        structure = self.instance_level.get_structure()
         if move == "right":
             if self.case_x < (constances.number_sprite - 1):
-
-                condition = self.structure[self.case_y][self.case_x + 1]
-                if condition == "0":
-                    self.structure[self.case_y][self.case_x] = "0"
+                # structure = self.instance_level.get_structure()
+                new_position = structure[self.case_y][self.case_x + 1]
+                if new_position == "0":
+                    structure[self.case_y][self.case_x] = "0"
                     self.case_x += 1
-                    self.structure[self.case_y][self.case_x] = "MG"
-                    # print("deplacement à droite")
-                    # print(self.structure)
-                    self.x = self.case_x * constances.size_sprite
-                    # TODO: Affichage de MG en LDC (pourquoi mettre le SELF ??????)
-                    # items.Items.generate_object(self)
+                    structure[self.case_y][self.case_x] = "MG"
+                    # TODO: Setter pour modif la structure
+                    self.instance_level.setter_structure(structure)
+                    return True
 
+                # Condition for items
+                elif new_position == "T" or new_position == "A" or new_position == "E":
+                    print(new_position)
+                    structure[self.case_y][self.case_x] = "0"
+                    self.case_x += 1
+                    structure[self.case_y][self.case_x] = "MG"
+                    self.instance_level.setter_structure(structure)
 
-                    # TODO: On fait appel à display pour gerer l'affichage de pygame
+                    # On ajoute l'objet ramasé à la liste
+                    self.objects.append(items.Items.pick_up_object(new_position))
+                    return True
 
-                # if condition == "T" or condition == "A" or condition == "E":
-                #     self.structure[self.case_y][self.case_x] = "0"
-                #     self.case_y = self.case_y + 1
-                #     self.structure[self.case_y][self.case_x] = "MG"
-                #     print("Mac_Gyver viens de ramasser un object")
-                #     self.objects.append("Tube")
-                #     MacGyver.display_structure(self)
-                # elif condition == "m":
-                #     print("deplacement impossible")
+                elif new_position == "a":
+                    if len(self.objects) != 3:
+                        print("GAME OVER")
+                        return False
+                    else:
+                        print("FELICITATION VOUS AVEZ GAGNEZ")
+                        return False
+            return True
 
         if move == "left":
             if self.case_x > 0:
-                condition = self.structure[self.case_y][self.case_x - 1]
-                if condition == "0":
-                    self.structure[self.case_y][self.case_x] = "0"
+                new_position = structure[self.case_y][self.case_x - 1]
+                if new_position == "0":
+                    structure[self.case_y][self.case_x] = "0"
                     self.case_x -= 1
-                    self.structure[self.case_y][self.case_x] = "MG"
+                    structure[self.case_y][self.case_x] = "MG"
+
+                    # TODO: Setter pour modif la structure
+                    self.instance_level.setter_structure(structure)
                     # print("deplacement à droite")
                     # print(self.structure)
                     self.x = self.case_x * constances.size_sprite
-                    print(self.x)
-                    # MacGyver.display_structure(self)
+                    # print(self.x)
+                    return True
+
+                elif new_position == "T" or new_position == "A" or new_position == "E":
+                    structure[self.case_y][self.case_x] = "0"
+                    self.case_x -= 1
+                    structure[self.case_y][self.case_x] = "MG"
+                    self.instance_level.setter_structure(structure)
+
+                    # On ajoute l'objet ramasé à la liste
+                    self.objects.append(items.Items.pick_up_object(new_position))
+                    return True
+
+                elif new_position == "a":
+                    if len(self.objects) != 3:
+                        print("GAME OVER")
+                        return False
+                    else:
+                        print("FELICITATION VOUS AVEZ GAGNEZ")
+                        return False
+            return True
 
         if move == "down":
             if self.case_y < (constances.number_sprite - 1):
-                condition = self.structure[self.case_y + 1][self.case_x]
-                if condition == "0":
-                    self.structure[self.case_y][self.case_x] = "0"
+                new_position = structure[self.case_y + 1][self.case_x]
+                if new_position == "0":
+                    structure[self.case_y][self.case_x] = "0"
                     self.case_y += 1
-                    self.structure[self.case_y][self.case_x] = "MG"
+                    structure[self.case_y][self.case_x] = "MG"
+
+                    # TODO: Setter pour modif la structure
+                    self.instance_level.setter_structure(structure)
                     # print("deplacement à droite")
                     # print(self.structure)
                     self.y = self.case_y * constances.size_sprite
-                    print(self.x)
-                    # MacGyver.display_structure(self)
+                    # print(self.x)
+                    return True
+
+                elif new_position == "T" or new_position == "A" or new_position == "E":
+                    structure[self.case_y][self.case_x] = "0"
+                    self.case_y += 1
+                    structure[self.case_y][self.case_x] = "MG"
+                    self.instance_level.setter_structure(structure)
+
+                    # On ajoute l'objet ramasé à la liste
+                    self.objects.append(items.Items.pick_up_object(new_position))
+                    return True
+
+                elif new_position == "a":
+                    if len(self.objects) != 3:
+                        print("GAME OVER")
+                        return False
+                    else:
+                        print("FELICITATION VOUS AVEZ GAGNEZ")
+                        return False
+            return True
 
         if move == "up":
             if self.case_y > 0:
-                condition = self.structure[self.case_y - 1][self.case_x]
-                if condition == "0":
-                    self.structure[self.case_y][self.case_x] = "0"
+                new_position = structure[self.case_y - 1][self.case_x]
+                if new_position == "0":
+                    structure[self.case_y][self.case_x] = "0"
                     self.case_y -= 1
-                    self.structure[self.case_y][self.case_x] = "MG"
+                    structure[self.case_y][self.case_x] = "MG"
+
+                    # TODO: Setter pour modif la structure
+                    self.instance_level.setter_structure(structure)
                     # print("deplacement à droite")
                     # print(self.structure)
                     self.y = self.case_y * constances.size_sprite
-                    print(self.x)
-                    # MacGyver.display_structure(self)
+                    # print(self.x)
+                    return True
 
+                elif new_position == "T" or new_position == "A" or new_position == "E":
+                    structure[self.case_y][self.case_x] = "0"
+                    self.case_y -= 1
+                    structure[self.case_y][self.case_x] = "MG"
+                    self.instance_level.setter_structure(structure)
+
+                    # On ajoute l'objet ramasé à la liste
+                    self.objects.append(items.Items.pick_up_object(new_position))
+                    return True
+
+                elif new_position == "a":
+                    if len(self.objects) != 3:
+                        print("GAME OVER")
+                        return False
+                    else:
+                        print("FELICITATION VOUS AVEZ GAGNER")
+                        return False
+            return True
 
         if move == "objects":
-            print("Mac gyver à les objets suivant: ", self.objects)
-            # MacGyver.display_structure(self)
+            print("Liste des objets que Mac Gyver à ramasé")
+            for object in self.objects:
+                print(object)
 
-        print(str("Mac Gyver est à la possition x:{} et y:{}").format(self.case_x, self.case_y))
+        # print(str("Mac Gyver est à la possition x:{} et y:{}").format(self.case_x, self.case_y))
 
 
