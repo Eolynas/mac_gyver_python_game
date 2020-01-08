@@ -60,10 +60,10 @@ class MacGyver:
                 elif new_position == "a":
                     if len(self.objects) != 3:
                         print("GAME OVER")
-                        return False
+                        return "L"
                     else:
                         print("FELICITATION VOUS AVEZ GAGNE")
-                        return False
+                        return "W"
             return True
 
         if move == "left":

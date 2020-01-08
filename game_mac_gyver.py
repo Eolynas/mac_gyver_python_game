@@ -7,6 +7,7 @@ import MacGyver
 import display
 import level as lvl
 import items
+import Endgame
 
 
 def main():
@@ -113,39 +114,36 @@ def main():
         # Fermeture du jeux si on appui sur la croix ou E
         if event.type == QUIT or (
                 event.type == KEYDOWN and event.key == K_e):  # Si un de ces événements est de type QUIT
-            # display_windows.end_game()
             break # On arrête la boucle
 
         elif event.type == KEYDOWN:
             # Deplacement vers la droite
             if event.key == K_RIGHT:
                 answer = mac_gyver.move("right")
-                # level_1.display_structure()
-                # print(answer)
-                if not answer:
+                # if not answer:
+                #     break
+                if answer == "W":
+                    Endgame.end_game("VOUS AVEZ GAGNE")
                     break
+                if answer == "L":
+                    Endgame.end_game("VOUS AVEZ PERDU")
+                    break
+
             # Deplacement vers la gauche
             elif event.key == K_LEFT:
                 answer = mac_gyver.move("left")
-                # level_1.display_structure()
-                # print(answer)
                 if not answer:
                     break
 
             # Deplacement vers le haut
             elif event.key == K_UP:
                 answer = mac_gyver.move("up")
-                # level_1.display_structure()
-                # print(answer)
                 if not answer:
                     break
 
             # Deplacement vers le bas
             elif event.key == K_DOWN:
                 answer = mac_gyver.move("down")
-                # level_1.display_structure()
-                # print("DOWN")
-                # print(answer)
                 if not answer:
                     break
 
@@ -159,8 +157,10 @@ def main():
         pygame.display.flip()
 
 
-    display_windows.end_game()
+    # display_windows.end_game()
 
+    # Message de fin
+    # Endgame.end_game("VOUS AVEZ GAGNE")
 
 if __name__ == '__main__':
     main()
