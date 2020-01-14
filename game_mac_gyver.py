@@ -14,23 +14,11 @@ def main():
 
     # Initialisation lvl
     level_1 = lvl.Level("config/level_1.txt")
-    # level_1.display_structure()
-    # ########################################### #
-    """
-    Initialisation de pygame
-    """
 
-    # ####### MAC GYVER ####### #
-
-    # Mac Gyver icon
     # init mac gyver en ligne de commande
     mac_gyver = MacGyver.MacGyver(level_1)
 
-    # ###################### #
-
-    # # ####### ITEMS ####### #
-    # # Initialisation de l'items
-    # TODO: Passer l'objet level pour faire la modif sur la structure
+    # Initialisation de l'items
     items_1 = items.Items(level_1, "aiguille")
     items_1.generate_object()
 
@@ -43,71 +31,15 @@ def main():
     # ####### FENETRE ####### #
     display_windows = display.Display()
     display_windows.display(level_1, mac_gyver.objects)
-    # ##################### #
 
-    # ##################### #
-    # TODO: Test display all
-    # display.test_display_all()
-    # display.display(level_1)
-    # Rafraichissement de la fenetre
     pygame.display.flip()
 
-    # ########################################### #
-
-    # continuer = 1
     while True:
-        # ########################################### #
         """
         Gestion de la boucle / event avec pygame
         """
         # Limitation de vitesse de la boucle
         pygame.time.Clock().tick(30)
-
-        # On parcours tous les events
-        # for event in pygame.event.get():  # On parcours la liste de tous les événements reçus
-        #
-        #     # Fermeture du jeux si on appui sur la croix ou E
-        #     if event.type == QUIT or (
-        #             event.type == KEYDOWN and event.key == K_e):  # Si un de ces événements est de type QUIT
-        #         # display_windows.end_game()
-        #         break # On arrête la boucle
-        #
-        #     elif event.type == KEYDOWN:
-        #         # Deplacement vers la droite
-        #         if event.key == K_RIGHT:
-        #             answer = mac_gyver.move("right")
-        #             # level_1.display_structure()
-        #             # print(answer)
-        #             if not answer:
-        #                 break
-        #
-        #         # Deplacement vers la gauche
-        #         elif event.key == K_LEFT:
-        #             answer = mac_gyver.move("left")
-        #             # level_1.display_structure()
-        #             # print(answer)
-        #             if not answer:
-        #                 break
-        #
-        #         # Deplacement vers le haut
-        #         elif event.key == K_UP:
-        #             answer = mac_gyver.move("up")
-        #             # level_1.display_structure()
-        #             # print(answer)
-        #             if not answer:
-        #                 return False
-        #
-        #         # Deplacement vers le bas
-        #         elif event.key == K_DOWN:
-        #             answer = mac_gyver.move("down")
-        #             # level_1.display_structure()
-        #             # print("DOWN")
-        #             # print(answer)
-        #             if not answer:
-        #                 return False
-        #
-        #         elif event.key == K_o:
-        #             mac_gyver.move("objects")
 
         event = pygame.event.wait()
 
@@ -120,8 +52,6 @@ def main():
             # Deplacement vers la droite
             if event.key == K_RIGHT:
                 answer = mac_gyver.move("right")
-                # if not answer:
-                #     break
                 if answer == "W":
                     Endgame.end_game("VOUS AVEZ GAGNE")
                     break
@@ -132,19 +62,29 @@ def main():
             # Deplacement vers la gauche
             elif event.key == K_LEFT:
                 answer = mac_gyver.move("left")
-                if not answer:
+                if answer == "W":
+                    Endgame.end_game("VOUS AVEZ GAGNE")
                     break
-
+                if answer == "L":
+                    Endgame.end_game("VOUS AVEZ PERDU")
+                    break
             # Deplacement vers le haut
             elif event.key == K_UP:
                 answer = mac_gyver.move("up")
-                if not answer:
+                if answer == "W":
+                    Endgame.end_game("VOUS AVEZ GAGNE")
                     break
-
+                if answer == "L":
+                    Endgame.end_game("VOUS AVEZ PERDU")
+                    break
             # Deplacement vers le bas
             elif event.key == K_DOWN:
                 answer = mac_gyver.move("down")
-                if not answer:
+                if answer == "W":
+                    Endgame.end_game("VOUS AVEZ GAGNE")
+                    break
+                if answer == "L":
+                    Endgame.end_game("VOUS AVEZ PERDU")
                     break
 
             elif event.key == K_o:
@@ -156,11 +96,6 @@ def main():
         # Rafraichissement
         pygame.display.flip()
 
-
-    # display_windows.end_game()
-
-    # Message de fin
-    # Endgame.end_game("VOUS AVEZ GAGNE")
 
 if __name__ == '__main__':
     main()
