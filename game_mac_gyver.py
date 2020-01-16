@@ -12,13 +12,13 @@ import Endgame
 
 def main():
 
-    # Initialisation lvl
+    # Init lvl
     level_1 = lvl.Level("config/level_1.txt")
 
-    # init mac gyver en ligne de commande
+    # init mac gyver command line
     mac_gyver = MacGyver.MacGyver(level_1)
 
-    # Initialisation de l'items
+    # Init item
     items_1 = items.Items(level_1, "aiguille")
     items_1.generate_object()
 
@@ -28,7 +28,7 @@ def main():
     items_3 = items.Items(level_1, "tube")
     items_3.generate_object()
 
-    # ####### FENETRE ####### #
+    # ####### WINDOW ####### #
     display_windows = display.Display()
     display_windows.display(level_1, mac_gyver.objects)
 
@@ -38,18 +38,18 @@ def main():
         """
         Gestion de la boucle / event avec pygame
         """
-        # Limitation de vitesse de la boucle
+        # Loop speed limit
         pygame.time.Clock().tick(30)
 
         event = pygame.event.wait()
 
-        # Fermeture du jeux si on appui sur la croix ou E
+        # Close the game if u press E
         if event.type == QUIT or (
-                event.type == KEYDOWN and event.key == K_e):  # Si un de ces événements est de type QUIT
-            break # On arrête la boucle
+                event.type == KEYDOWN and event.key == K_e):
+            break
 
         elif event.type == KEYDOWN:
-            # Deplacement vers la droite
+            # Move right
             if event.key == K_RIGHT:
                 answer = mac_gyver.move("right")
                 if answer == "W":
@@ -59,7 +59,7 @@ def main():
                     Endgame.end_game("VOUS AVEZ PERDU")
                     break
 
-            # Deplacement vers la gauche
+            # Move left
             elif event.key == K_LEFT:
                 answer = mac_gyver.move("left")
                 if answer == "W":
@@ -68,7 +68,7 @@ def main():
                 if answer == "L":
                     Endgame.end_game("VOUS AVEZ PERDU")
                     break
-            # Deplacement vers le haut
+            # Move top
             elif event.key == K_UP:
                 answer = mac_gyver.move("up")
                 if answer == "W":
@@ -77,7 +77,7 @@ def main():
                 if answer == "L":
                     Endgame.end_game("VOUS AVEZ PERDU")
                     break
-            # Deplacement vers le bas
+            # Move down
             elif event.key == K_DOWN:
                 answer = mac_gyver.move("down")
                 if answer == "W":
@@ -90,10 +90,10 @@ def main():
             elif event.key == K_o:
                 mac_gyver.move("objects")
 
-        # Re-collage
+        # Re-display
         display_windows.display(level_1, mac_gyver.objects)
 
-        # Rafraichissement
+        # refresh
         pygame.display.flip()
 
 

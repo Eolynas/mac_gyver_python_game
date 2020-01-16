@@ -27,12 +27,7 @@ class Items:
         self.image = name_image
         # Name
         self.name = name
-        # Structure
-        # self.structure = structure
         self.name_object = ""
-        # Placement de l'objet sur la structure
-        # self.generate_object()
-        # self.items = self.structure[self.y][self.x]
 
     def generate_object(self):
         """
@@ -65,12 +60,3 @@ class Items:
             return "Ether"
         elif object_pu == "T":
             return "Tube"
-
-    # def display_aiguille(self, my_dysplay: display.Display):
-    #     my_dysplay.display_aiguille(self.y, self.x)
-    #
-    # def display_ether(self, my_dysplay: display.Display):
-    #     my_dysplay.display_ether(self.y, self.x)
-    #
-    # def display_tube(self, my_dysplay: display.Display):
-    #     my_dysplay.display_tube(self.y, self.x)

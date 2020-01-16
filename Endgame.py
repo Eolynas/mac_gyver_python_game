@@ -5,8 +5,6 @@ import time
 def end_game(message):
     pygame.init()
 
-    # define the RGB value for white,
-    #  green, blue colour .
     white = (255, 255, 255)
     green = (0, 255, 0)
     red = (255, 0, 0)
