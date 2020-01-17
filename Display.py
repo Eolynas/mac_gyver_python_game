@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import pygame
-import time
 import constances
 
 
@@ -20,7 +19,9 @@ class Display:
         self.aiguille_icon_none = pygame.image.load(constances.img_aiguille_none).convert_alpha()
 
         self.ether_icon = pygame.image.load(constances.img_ether).convert_alpha()
+
         self.tube_icon = pygame.image.load(constances.img_tube).convert_alpha()
+
         self.guardian = pygame.image.load(constances.img_guardian).convert_alpha()
 
         self.background = pygame.image.load(constances.background_game).convert()
@@ -56,6 +57,11 @@ class Display:
         self.display_object_pu(items_pu)
 
     def display_object_pu(self, items):
+        '''
+
+        :param items:
+        :return:
+        '''
         red = (125, 13, 43)
         font = pygame.font.SysFont("comicsansms", 30)
         text = font.render("Liste des objets: ", True, red)

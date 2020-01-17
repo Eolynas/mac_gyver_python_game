@@ -16,14 +16,14 @@ class Items:
         # Instance level object
         self.instance_level = level
         # Line horizontal
-        self.case_x = ""
-        # Line vertical
-        self.case_y = ""
+        # self.case_x = ""
+        # # Line vertical
+        # self.case_y = ""
         self.x = 0
         self.y = 0
         # IMG
         name_image = str("constances.images/img_" + name + ".png")
-        print(name_image)
+        # print(name_image)
         self.image = name_image
         # Name
         self.name = name
@@ -39,6 +39,7 @@ class Items:
         while True:
             self.case_x = random.randint(0, 14)
             self.case_y = random.randint(0, 14)
+            # If not wall
             if structure[self.case_y][self.case_x] == "0":
                 print("Création de l'objet", self.name, " à l'emplacement x:", self.case_x, " y:", self.case_y)
                 self.name_object = self.name[0].upper()

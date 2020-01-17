@@ -3,6 +3,7 @@
 #Paramèters Windows
 number_sprite = 15
 size_sprite = 40
+# TODO: FR ENG + MAJ
 cote_fenetre = number_sprite * size_sprite
 size_info = 100
 

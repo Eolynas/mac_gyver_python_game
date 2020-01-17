@@ -43,4 +43,4 @@ def end_game(message):
 
         time.sleep(5)
 
-        return False
+        break
