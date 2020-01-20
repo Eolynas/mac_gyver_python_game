@@ -3,6 +3,11 @@ import time
 
 
 def end_game(message):
+    """
+    display the endgame message
+    :param message: str: message end game
+    :return: pygame (close after 5s)
+    """
     pygame.init()
 
     white = (255, 255, 255)

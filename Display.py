@@ -19,8 +19,10 @@ class Display:
         self.aiguille_icon_none = pygame.image.load(constances.IMG_AIGUILLE_NONE).convert_alpha()
 
         self.ether_icon = pygame.image.load(constances.IMG_ETHER).convert_alpha()
+        self.ether_icon_none = pygame.image.load(constances.IMG_ETHER_NONE).convert_alpha()
 
         self.tube_icon = pygame.image.load(constances.IMG_TUBE).convert_alpha()
+        self.tube_icon_none = pygame.image.load(constances.IMG_TUBE_NONE).convert_alpha()
 
         self.guardian = pygame.image.load(constances.IMG_GUARDIAN).convert_alpha()
 
@@ -30,7 +32,7 @@ class Display:
 
     def display(self, lvl, items_pu):
         """
-
+        display level with pygame
         :param lvl: lvl to display
         :param items_pu: object pickup
         :return: Display pygame
@@ -58,7 +60,7 @@ class Display:
 
     def display_object_pu(self, items):
         '''
-
+        display object with pygame
         :param items:
         :return:
         '''
@@ -73,13 +75,13 @@ class Display:
         else:
             self.window.blit(self.aiguille_icon_none, (170, 645))
         if "Tube" in items:
-            self.window.blit(self.tube_icon, (230, 645))
+            self.window.blit(self.tube_icon, (270, 645))
         else:
-            self.window.blit(self.tube_icon, (230, 645))
+            self.window.blit(self.tube_icon_none, (270, 645))
         if "Ether" in items:
-            self.window.blit(self.ether_icon, (200, 645))
+            self.window.blit(self.ether_icon, (220, 645))
         else:
-            self.window.blit(self.ether_icon, (200, 645))
+            self.window.blit(self.ether_icon_none, (220, 645))
 
 
 
