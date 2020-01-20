@@ -12,13 +12,11 @@ class Items:
     def __init__(self, level, name):
         """
 
+        :param level: level instance
+        :param name: object name
         """
         # Instance level object
         self.instance_level = level
-        # Line horizontal
-        # self.case_x = ""
-        # # Line vertical
-        # self.case_y = ""
         self.x = 0
         self.y = 0
         # IMG
@@ -28,12 +26,15 @@ class Items:
         # Name
         self.name = name
         self.name_object = ""
+        self.case_x = 0
+        self.case_y = 0
 
     def generate_object(self):
         """
         Function for generate position for the objects at pick up
-        :return:
+        :return: generate object
         """
+
         # Getter pour recup la structure
         structure = self.instance_level.get_structure()
         while True:
@@ -44,10 +45,9 @@ class Items:
                 print("Création de l'objet", self.name, " à l'emplacement x:", self.case_x, " y:", self.case_y)
                 self.name_object = self.name[0].upper()
                 structure[self.case_y][self.case_x] = self.name_object
-                # print(self.structure)
-                self.x = self.case_x * constances.size_sprite
-                self.y = self.case_y * constances.size_sprite
-                # TODO: On envoie les coordonnées à la class level qui gere l'affichage en ligne de commande
+                self.x = self.case_x * constances.SIZE_SPRITE
+                self.y = self.case_y * constances.SIZE_SPRITE
+                # Update lvl structure
                 self.instance_level.setter_structure(structure)
 
                 break

@@ -11,7 +11,13 @@ import endgame
 
 # TODO: REQUIREMENT.txt
 
+
 def main():
+    '''
+    principal function for the game.
+    She will take care of all pygame event of the games
+    :return: Game
+    '''
 
     # Init lvl
     level_1 = lvl.Level("config/level_1.txt")
@@ -36,16 +42,16 @@ def main():
     pygame.display.flip()
 
     while True:
-        """
-        Gestion de la boucle / event avec pygame
-        """
         # Loop speed limit
         pygame.time.Clock().tick(30)
 
         event = pygame.event.wait()
 
         # Close the game if u press E
-        if event.type == QUIT or (event.type == KEYDOWN and event.key == K_e):
+        # if event.type == QUIT or (event.type == KEYDOWN and event.key == K_e):
+        #     break
+
+        if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
             break
 
         elif event.type == KEYDOWN:
@@ -86,9 +92,6 @@ def main():
                 if answer == "L":
                     endgame.end_game("VOUS AVEZ PERDU")
                     break
-
-            # elif event.key == K_o:
-            #     mac_gyver.move("objects")
 
         # Re-display
         display_windows.display(level_1, mac_gyver.objects)
